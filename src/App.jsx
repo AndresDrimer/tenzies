@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Die from "./components/Die";
 import "./App.css";
 import { nanoid } from "nanoid";
+import Confetti from 'react-confetti'
+
 
 function App() {
   const [randomNumsArray, setRandomNumsArray] = useState(populateNumArray())
@@ -14,7 +16,6 @@ function App() {
   const sameValue = randomNumsArray.every(it => it.number === randomNumsArray[0].number)
   if( allSelected && sameValue){
     setTenzies(true)
-    alert("Ganaste!!!")
   }
   
  
@@ -57,24 +58,33 @@ function generateNewArray(){
   })
 
 function darDeVuelta(){
-
+  if (!tenzies){
   setRandomNumsArray( prev => prev.map( it => {
     return it.isSelected ? it : generateNewArray()}
-    ))
+    ))} else {
+      setTenzies(false)
+      setRandomNumsArray(populateNumArray())
+    }
 }
 
-console.log(randomNumsArray)
+
 
   return (
     <div className="App">
       <div className="game-wrapper">
+     
+      {tenzies && <Confetti />}
+     
       <h1>Tenzies</h1>
       <h3 className="sub-titulo">Elegí el número que quieras y marcá todos los que encuentres. Luego tocá "Dar de nuevo" hasta completar todos los casilleros con el mismo número.</h3>
         <div className="total-numbers-wrapper">
           {buttonNumbersElements}
           
         </div>
-        <button className="dar-de-nuevo-btn" onClick={darDeVuelta}>{ tenzies ? "Nueva partida" : "Dar de nuevo"}</button>
+        <button 
+        className="dar-de-nuevo-btn" 
+        onClick={darDeVuelta}>{ tenzies ? "* Nueva partida *" : "Dar de nuevo"} 
+        </button>
       </div>
     </div>
   );
