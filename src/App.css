@@ -46,7 +46,8 @@ body{
     height: 20px;
 }
 .game-wrapper{
-  height: 70vh;
+  height: 90vh;
+  padding: 15px;
 }}
 .dar-de-nuevo-btn{
   background-color: rgba(80, 32, 255, 0.976);
