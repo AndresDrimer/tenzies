@@ -1,61 +1,81 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Die from "./components/Die";
 import "./App.css";
-import {nanoid} from 'nanoid'
+import { nanoid } from "nanoid";
 
 function App() {
+  const [randomNumsArray, setRandomNumsArray] = useState(populateNumArray())
+ 
+ const [tenzies, setTenzies] = useState(false)
+ 
+ 
+ useEffect(()=>{ 
+  const allSelected = randomNumsArray.every( it => it.isSelected)
+  const sameValue = randomNumsArray.every(it => it.number === randomNumsArray[0].number)
+  if( allSelected && sameValue){
+    setTenzies(true)
+    alert("Ganaste!!!")
+  }
+  
+ 
+ }, [randomNumsArray])
 
 
-  function getNumber() {
-    const numberArray = [];
-    for (let i = 0; i < 10; i++) {
-      numberArray.push({
-        number: Math.floor(Math.random() * 6) + 1,
-        isSelected: false,
-        id: nanoid()
-      });
+
+function generateNewArray(){
+  return{
+  number: Math.floor(Math.random() *6)+1,
+  isSelected: false,
+  id: nanoid()
+}}
+
+  function populateNumArray(){
+    const numberArray = []
+    for (let i=0; i<10;i++){
+      numberArray.push(generateNewArray())
     }
-    return numberArray;
+    return numberArray
   }
-
-  const [numbers, setNumbers] = useState(getNumber());
-
-  function holdDice(id) {
-    setNumbers(prev => prev.map( it => {
-      return it.id===id ? 
-      {...it, 
-        isSelected: !isSelected} : it
-    }))
+  function buttonClicked(id){
+  setRandomNumsArray( prev => prev.map( it => {
+    return it.id === id ? {...it, isSelected: !it.isSelected} : 
+    it}
+    ))  
+  
   }
+  
+  const buttonNumbersElements = randomNumsArray.map(item=>{
+    return(
+      <Die 
+      number={item.number}
+      key= {item.id}
+      buttonClicked={()=>buttonClicked(item.id)}
+      isSelected= {item.isSelected}
+      />
+     
+    )
+  })
 
-  const elements = numbers.map((it) => {
-    return <Die 
-              number={it.number} 
-              isSelected={it.isSelected} 
-              holdDice={()=> holdDice(it.id)} 
-              key={it.id}
-              value={it.value}
-              />;
-  });
+function darDeVuelta(){
 
-  function nuevosNumeros() {
-    setNumbers(getNumber());
-  }
+  setRandomNumsArray( prev => prev.map( it => {
+    return it.isSelected ? it : generateNewArray()}
+    ))
+}
+
+console.log(randomNumsArray)
 
   return (
     <div className="App">
-      <main>
-        <div className="die-wrapper">
-        {elements}
+      <div className="game-wrapper">
+      <h1>Tenzies</h1>
+      <h3 className="sub-titulo">Elegí el número que quieras y marcá todos los que encuentres. Luego tocá "Dar de nuevo" hasta completar todos los casilleros con el mismo número.</h3>
+        <div className="total-numbers-wrapper">
+          {buttonNumbersElements}
+          
         </div>
-        <button
-          className="btn-nuevosNumeros"
-          type="submit"
-          onClick={nuevosNumeros}
-        >
-          Actualizar
-        </button>
-      </main>
+        <button className="dar-de-nuevo-btn" onClick={darDeVuelta}>{ tenzies ? "Nueva partida" : "Dar de nuevo"}</button>
+      </div>
     </div>
   );
 }
