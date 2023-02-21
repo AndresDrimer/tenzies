@@ -120,7 +120,7 @@ function App() {
         </div>
 
         <h1 className="title">TENZIES </h1>
-        <img src={dice} width="50px" className="-title-img-dice" />
+        <img src={dice} className="-title-img-dice" />
         <h3 className="subTitle">
           {spanish
             ? "Elegí el número que quieras y marcá todos los que encuentres. Luego tocá el botón ´Tirar de nuevo´ hasta completar todos los casilleros con el mismo número. Apurate, tu tiempo corre!"

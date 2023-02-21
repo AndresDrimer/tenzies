@@ -38,7 +38,14 @@ body {
   filter: drop-shadow(0 0 0.75rem rgb(136, 189, 216));
 }
 .-title-img-dice{
- margin-top: -40px;
+ margin: -40px 0 10px 0;
+ filter: drop-shadow(6px 6px 2px #968a8a);
+ width: 70px;
+ animation: delayShow ease-in-out 2s;
+}
+@keyframes delayShow {
+  from {opacity: 0}
+  to {opacity:1}
 }
 .title {
   text-decoration:  overline;
@@ -128,9 +135,10 @@ body {
 }
 .--counter-total-points{
   display: block;
-  background-color: rgba(235, 235, 72, 0.5);
+  background-color: #222222;
   border-radius:  0 0 15px 15px;
   height: 60px;
+  color: azure;
 }
 .btn-play-again{
   color: azure;
