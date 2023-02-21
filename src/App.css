@@ -37,7 +37,9 @@ body {
 .flag:hover {
   filter: drop-shadow(0 0 0.75rem rgb(136, 189, 216));
 }
-
+.-title-img-dice{
+ margin-top: -40px;
+}
 .title {
   text-decoration:  overline;
   font-family: 'Gajraj One', cursive;
@@ -110,9 +112,29 @@ body {
   font-size: 5rem;
 }
 
-.--counter-wrapper {
-  width: 100px;
-  background-color: rgba(242, 239, 67, 0.5);
-  border-radius: 15px;
+.--counter-wrapper-first-line{
+  display: flex;
+  justify-content: space-around;
+}
+
+.--counter-wrapper-total{
+  width:100%;
+  background-color: #757373;
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:10px;
+}
+.--counter-total-points{
+  display: block;
+  background-color: rgba(235, 235, 72, 0.5);
+  border-radius:  0 0 15px 15px;
   height: 60px;
+}
+.btn-play-again{
+  color: azure;
+}
+.red{
+  background-color: red;
 }
