@@ -40,7 +40,7 @@ body {
 .-title-img-dice{
  margin: -40px 0 10px 0;
  filter: drop-shadow(6px 6px 2px #968a8a);
- width: 70px;
+ width: 80px;
  animation: delayShow ease-in-out 2s;
 }
 @keyframes delayShow {
