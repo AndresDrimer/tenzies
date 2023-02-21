@@ -3,18 +3,16 @@ import Die from "./components/Die";
 import "./App.css";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
-
+import argentina from "/argentina.svg";
+import usa from "/usa.svg";
+import Counter from './components/Counter'
 
 function App() {
   const [randomNumsArray, setRandomNumsArray] = useState(populateNumArray());
-
   const [tenzies, setTenzies] = useState(false);
-
   const [timesPlayed, setTimesPlayed] = useState(0);
-
-  const [time, setTime] = useState(0);
-
-  
+  const [counter, setCounter] = useState(0);
+  const [spanish, setSpanish] = useState(true);
 
   useEffect(() => {
     const allSelected = randomNumsArray.every((it) => it.isSelected);
@@ -25,6 +23,13 @@ function App() {
       setTenzies(true);
     }
   }, [randomNumsArray]);
+
+
+  //timer//
+  useEffect(() => {
+    const timer = !tenzies && setTimeout(() => setCounter(counter + 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
 
   function generateNewArray() {
     return {
@@ -75,25 +80,53 @@ function App() {
     }
   }
 
+  function toggleIdiom() {
+    console.log(spanish);
+    setSpanish((prev) => !prev);
+  }
+
+ const roll = spanish ? "Tirar de nuevo" : "Roll again"
+const btnStyle={
+  backgroundColor: tenzies ? "yellow" : "rgb(136, 189, 216)"
+}
+
+function seconds(n) { return (n < 10 ? '0' : '') + n;}
+
+
   return (
     <div className="App">
-  
       <div className="game-wrapper">
         {tenzies && <Confetti />}
-
-        <h1>Tenzies</h1>
-        <h3 className="sub-titulo">
-          Elegí el número que quieras y marcá todos los que encuentres. Luego
-          tocá "Dar de nuevo" hasta completar todos los casilleros con el mismo
-          número.
+        <div className="btns-idiom-selectors">
+          <img 
+          src={ spanish? argentina : usa} 
+          alt="argentinian flag" 
+          onClick={toggleIdiom}
+          className="flag"
+          />
+        </div>
+        <h1 className="title">TENZIES</h1>
+        <h3 className="subTitle">{spanish ? "Elegí el número que quieras y marcá todos los que encuentres. Luego tocá el botón ´Tirar de nuevo´ hasta completar todos los casilleros con el mismo número. Apurate, tu tiempo corre!" : "Choose a number and tape on every single one. Update your numbers with the ´Roll Again´ button. Hurry up, time´s running! "}
+          
         </h3>
         <div className="total-numbers-wrapper">{buttonNumbersElements}</div>
-        <button className="dar-de-nuevo-btn" onClick={darDeVuelta}>
-          {tenzies ? "* Nueva partida *" : "Dar de nuevo"}
+        <button 
+        className="dar-de-nuevo-btn" 
+        onClick={darDeVuelta}
+        style={btnStyle}
+        >
+          {tenzies ? "* Nueva partida *" : roll }
         </button>
         <hr />
-        {timesPlayed > 0 && <h4>Cantidad de tiradas: {timesPlayed}</h4>}
-        <h5>{time}</h5>
+       
+        {timesPlayed > 0 && <h4>{spanish ? "Cantidad de tiradas" : "Number of rows"}: {timesPlayed}</h4>}
+
+        <Counter 
+        spanish={spanish}
+        seconds={seconds}
+        counter={counter}
+        />
+       
       </div>
     </div>
   );

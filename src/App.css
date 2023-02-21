@@ -4,7 +4,7 @@
   padding: 2rem;
   text-align: center;
   box-sizing: border-box;
-}
+color:#222222}
 
 body {
   background-color: #222222;
@@ -20,6 +20,34 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.btns-idiom-selectors {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.flag {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  filter: opacity(0.4);
+}
+.flag:hover {
+  filter: drop-shadow(0 0 0.75rem rgb(136, 189, 216));
+}
+
+.title {
+  text-decoration:  overline;
+  font-family: 'Gajraj One', cursive;
+  font-size: 5rem;
+  filter: drop-shadow(3px 3px 1px #968a8a);
+}
+.subTitle{
+  text-align: justify;
+  padding:0 20px;
+  
 }
 .total-numbers-wrapper {
   display: grid;
@@ -82,3 +110,9 @@ body {
   font-size: 5rem;
 }
 
+.--counter-wrapper {
+  width: 100px;
+  background-color: rgba(242, 239, 67, 0.5);
+  border-radius: 15px;
+  height: 60px;
+}
