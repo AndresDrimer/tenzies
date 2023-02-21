@@ -10,7 +10,7 @@ body {
   background-color: #222222;
 }
 .game-wrapper {
-  margin:  0 auto;
+  margin: 0 auto;
   max-width: 500px;
   height: fit-content;
   padding: 25px;
@@ -73,3 +73,12 @@ body {
     }
   }
 }
+.--die-die1,
+.--die-die2,
+.--die-die3,
+.--die-die4,
+.--die-die5,
+.--die-die6 {
+  font-size: 5rem;
+}
+
