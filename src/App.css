@@ -13,13 +13,27 @@ body {
   margin: 0 auto;
   max-width: 500px;
   height: fit-content;
-  padding: 25px;
+  padding: 10px 20px;
   background-color: lightgray;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.date-idioms-container{
+  display: flex;
+  width:100%;
+  height:100%;
+  align-items: center;
+}
+.date{
+  width: 100%;
+  text-align: left;
+  padding:10px
+}
+.date span{
+  font-weight: 500;
 }
 .btns-idiom-selectors {
   width: 100%;
@@ -58,6 +72,27 @@ body {
   padding:0 20px;
   
 }
+/*REGISTER PAGE*/
+
+.--register-form{
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  line-height: 2rem;
+}
+
+.--register-btn{
+  display:block;
+  margin:3rem auto;
+
+  background-color: #56d0e9;
+  color: grey;
+}
+.--register-btn:hover{
+  color: #070707;
+}
+
+
 .total-numbers-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -127,7 +162,7 @@ body {
 .--counter-wrapper-total{
   width:100%;
   background-color: #757373;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,7 +177,17 @@ body {
 }
 .btn-play-again{
   color: azure;
+  background-color: rgb(195, 24, 24);
+
 }
-.red{
-  background-color: red;
+
+/*SCORES*/
+.--scores-form-btn{
+display: block;
+margin: 10px auto;
+height: 100%;
+display: flex;
+place-content: center;
+background-color: lightblue;
+
 }
